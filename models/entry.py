@@ -5,3 +5,4 @@ class Entries():
         self.mood_id = mood_id
         self.text = text
         self.tag_id = tag_id
+        self.mood = None

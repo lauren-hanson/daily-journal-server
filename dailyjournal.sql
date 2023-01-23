@@ -7,11 +7,11 @@ CREATE TABLE `Entries` (
     FOREIGN KEY (`tag_id`) REFERENCES `Tags`(`id`) 
 )
 
-DROP TABLE `Entries`
+DROP TABLE `Moods`
 
 CREATE TABLE `Moods` (
     `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
-   `type` INTEGER NOT NULL
+   `mood` INTEGER NOT NULL
 )
 
 CREATE TABLE `Tags` (
