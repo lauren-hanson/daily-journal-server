@@ -44,6 +44,19 @@ class HandleRequests(BaseHTTPRequestHandler):
     def do_PUT(self):
         self.do_PUT()
 
+    def do_DELETE(self):
+        # Parse the URL
+        (resource, id) = self.parse_url(self.path)
+        # Delete a single order from the list
+        if resource == "entries":
+            # Set a 204 response code
+            self._set_headers(204)
+            delete_entry(id)
+
+        # Encode the new order and send in response
+        self.wfile.write("".encode())
+
+
     def _set_headers(self, status):
         self.send_response(status)
         self.send_header('Content-type', 'application/json')
