@@ -1,14 +1,34 @@
+import sqlite3
+import json
+from models import Entries
+
 ENTRIES = [
-    {
-        "id": 1, 
-        "mood_id": 3, 
-        "tag_id": 4, 
-        "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-    }
+    
 ]
 
 def get_all_entries(): 
-    return ENTRIES
+    with sqlite3.connect("./dailyjournal.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        SELECT
+            e.id, 
+            e.mood_id, 
+            e.tag_id, 
+            e.text
+        FROM Entries e
+        """)
+
+        entries = []
+
+        dataset = db_cursor.fetchall()
+        for row in dataset: 
+            entry = Entries(row['id'], row['mood_id'], row['tag_id'], row['text'])
+
+            entries.append(entry.__dict__)
+
+    return entries
 
 def get_single_entry(id): 
     requested_entry = None
