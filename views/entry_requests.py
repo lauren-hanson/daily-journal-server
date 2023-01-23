@@ -31,9 +31,22 @@ def get_all_entries():
     return entries
 
 def get_single_entry(id): 
-    requested_entry = None
-    for entry in ENTRIES: 
-            if entry["id"] == id: 
-                requested_entry = entry
+    with sqlite3.connect('./dailyjournal.sqlite3') as conn: 
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
 
-    return requested_entry
+        db_cursor.execute("""
+        SELECT 
+            e.id, 
+            e.mood_id, 
+            e.tag_id, 
+            e.text
+        FROM Entries e
+        WHERE e.id = ? 
+        """, (id, ))
+
+        data = db_cursor.fetchone()
+
+        entry = Entries(data['id'], data['mood_id'], data['tag_id'], data['text'])
+
+        return entry.__dict__
