@@ -31,6 +31,13 @@ class HandleRequests(BaseHTTPRequestHandler):
             else:
                 response = get_all_entries()
 
+        elif resource == "moods":
+            if id is not None:
+                response = get_single_mood(id)
+
+            else:
+                response = get_all_moods()
+
         self.wfile.write(json.dumps(response).encode())
 
     def do_POST(self):
@@ -52,6 +59,10 @@ class HandleRequests(BaseHTTPRequestHandler):
             # Set a 204 response code
             self._set_headers(204)
             delete_entry(id)
+
+        elif resource == "moods": 
+            self._set_headers(204)
+            delete_mood(id)
 
         # Encode the new order and send in response
         self.wfile.write("".encode())
