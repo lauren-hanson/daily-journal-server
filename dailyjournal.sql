@@ -25,12 +25,12 @@ INSERT INTO `Moods` VALUES (null, "Grateful");
 INSERT INTO `Moods` VALUES (null, "Silly");
 INSERT INTO `Moods` VALUES (null, "Rejected");
 
-INSERT INTO `Tags` VALUES (null, "");
-INSERT INTO `Tags` VALUES (null, "");
-INSERT INTO `Tags` VALUES (null, "");
-INSERT INTO `Tags` VALUES (null, "");
-INSERT INTO `Tags` VALUES (null, "");
-INSERT INTO `Tags` VALUES (null, "");
-INSERT INTO `Tags` VALUES (null, "");
+INSERT INTO `Tags` VALUES (null, "Love");
+INSERT INTO `Tags` VALUES (null, "Family");
+INSERT INTO `Tags` VALUES (null, "Work");
+INSERT INTO `Tags` VALUES (null, "Tired");
+INSERT INTO `Tags` VALUES (null, "Excited");
+INSERT INTO `Tags` VALUES (null, "Joy");
+INSERT INTO `Tags` VALUES (null, "Sad");
 
 INSERT INTO `Entries` VALUES (null, 3, 4, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
