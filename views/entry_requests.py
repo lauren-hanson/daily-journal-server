@@ -14,9 +14,9 @@ def get_all_entries():
         db_cursor.execute("""
         SELECT
             e.id, 
-            e.mood_id, 
-            e.tag_id, 
-            e.text
+            e.mood_id,
+            e.text, 
+            e.tag_id 
         FROM Entries e
         """)
 
@@ -24,7 +24,7 @@ def get_all_entries():
 
         dataset = db_cursor.fetchall()
         for row in dataset: 
-            entry = Entries(row['id'], row['mood_id'], row['tag_id'], row['text'])
+            entry = Entries(row['id'], row['mood_id'], row['text'],row['tag_id'])
 
             entries.append(entry.__dict__)
 
@@ -39,15 +39,15 @@ def get_single_entry(id):
         SELECT 
             e.id, 
             e.mood_id, 
-            e.tag_id, 
-            e.text
+            e.text,
+            e.tag_id
         FROM Entries e
         WHERE e.id = ? 
         """, (id, ))
 
         data = db_cursor.fetchone()
 
-        entry = Entries(data['id'], data['mood_id'], data['tag_id'], data['text'])
+        entry = Entries(data['id'], data['mood_id'], data['text'],data['tag_id'])
 
         return entry.__dict__
 
